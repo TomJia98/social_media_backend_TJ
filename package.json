@@ -1,0 +1,24 @@
+{
+  "name": "social_media_backend_tj",
+  "version": "1.0.0",
+  "description": "a backend system for a social media platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomJia98/social_media_backend_TJ.git"
+  },
+  "author": "TJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomJia98/social_media_backend_TJ/issues"
+  },
+  "homepage": "https://github.com/TomJia98/social_media_backend_TJ#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.11",
+    "mongoose-type-email": "^1.1.2"
+  }
+}
