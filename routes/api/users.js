@@ -37,9 +37,9 @@ router.post('/', async (req, res) => {//create user. 'post'-/api/users/
 });
 
 
-router.put('/:_id', async (req,res) => {//update user info by _id. 'put'-/api/users/
+router.put('/:_id', async (req, res) => {//update user info by _id. 'put'-/api/users/
     try{
-        const updateUser = User.findOneAndUpdate(
+        const updateUser = await User.findOneAndUpdate(
             {'_id': req.params._id}, 
              req.body, {
                  new:true
@@ -53,6 +53,24 @@ router.put('/:_id', async (req,res) => {//update user info by _id. 'put'-/api/us
 });
 
 router.delete('/:_id', async (req, res) => {
+    try {
+            const findUsersThoughts = await User.findOne({_id: req.params._id})
+            const usersThoughts = findUsersThoughts.thoughts
+            usersThoughts.forEach(async element => {
 
+                const deleteThoughts =  await Thought.findOneAndRemove({
+                    '_id': element._id
+                })
+                deleteThoughts;
+            })
+        const deleteUser = await User.findOneAndRemove({
+        _id: req.params._id});
+        deleteUser;
+        res.status(200).send('user and their thoughts successfully deleted')
+} catch  (err) {
+    res.status(500).json(err);
+}} )
+
+
+        
     
-})
