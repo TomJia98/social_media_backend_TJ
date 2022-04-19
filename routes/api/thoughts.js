@@ -73,10 +73,11 @@ router.post("/:thoughtId/reactions", async (req, res) => {
   try {
     const createReaction = await Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { reaction: req.body } },
+      { $addToSet: { reactions: req.body } },
       { new: true }
     );
-    res.status(200).json(createReaction);
+    createReaction;
+    res.status(200).send(`reaction added to thought`);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -87,10 +88,11 @@ router.delete("/:thoughtId/reactions", async (req, res) => {
   try {
     const deleteReaction = await Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reaction: req.body } },
+      { $pull: { reactions: req.body } },
       { new: true }
     );
-    res.status(200).json(deleteReaction);
+    deleteReaction;
+    res.status(200).send("reaction deleted");
   } catch (err) {
     res.status(500).json(err);
   }
